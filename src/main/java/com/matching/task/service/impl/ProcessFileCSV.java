@@ -41,7 +41,7 @@ public class ProcessFileCSV implements ProcessFile {
         deserializer.close(true);
 
         List<SetOfPairs> setOfPairs = listOfMatchesWithTheHighestAverageMatchScore(findAllPossiblePairs(personDTOS));
-        //setOfPairs.sort(Comparator.comparing(SetOfPairs::getAverageOfPairs).reversed());
+        setOfPairs.sort(Comparator.comparing(SetOfPairs::getAverageOfPairs).reversed());
         return setOfPairs;
 
 
