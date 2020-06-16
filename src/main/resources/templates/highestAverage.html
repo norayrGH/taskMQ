@@ -1,0 +1,23 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<body>
+
+<div th:if="${not #lists.isEmpty(listOfSetOfPairs)}">
+    <div>
+        <div th:each="setOfPairs : ${listOfSetOfPairs}">
+
+            <h1 th:text="${setOfPairs.averageOfPairs}"></h1>
+            <br/>
+            <br/>
+            <ul th:each="pair : ${setOfPairs.pairs}">
+               <li>
+                <span th:text="${pair.personDTO1}">person1</span> &nbsp;&nbsp;&nbsp; <span th:text="${pair.personDTO2}">person2</span>
+               </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
