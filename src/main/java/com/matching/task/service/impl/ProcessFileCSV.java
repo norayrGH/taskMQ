@@ -1,9 +1,7 @@
 package com.matching.task.service.impl;
 
-import com.matching.task.dto.Pair;
 import com.matching.task.dto.PersonDTO;
 import com.matching.task.service.ProcessFile;
-import com.matching.task.utils.SetOfPairs;
 import net.sf.jsefa.Deserializer;
 import net.sf.jsefa.common.lowlevel.filter.HeaderAndFooterFilter;
 import net.sf.jsefa.csv.CsvIOFactory;
