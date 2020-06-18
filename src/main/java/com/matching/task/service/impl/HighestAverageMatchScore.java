@@ -27,7 +27,7 @@ public class HighestAverageMatchScore implements MentoringChallenge {
             setOfPairs.addPair(
                     new Pair(allPersons.get(index),keepFirstElement, pairComparePercentage(allPersons.get(index),keepFirstElement)));
             for (int other = 1; other < halfOfTheList; other++) {
-                int firs = (other + i) % halfOfTheList;
+                int firs = (other + i) % allPersons.size();
                 int second = (i + allPersons.size() - other) % allPersons.size();
                 setOfPairs.addPair(
                         new Pair(allPersons.get(firs),allPersons.get(second), pairComparePercentage(allPersons.get(firs),allPersons.get(second))));
