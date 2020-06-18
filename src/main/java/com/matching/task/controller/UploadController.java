@@ -1,6 +1,7 @@
 package com.matching.task.controller;
 
-import com.matching.task.service.ProcessFile;
+import com.matching.task.service.ProcessAndMentoringFacade;
+import com.matching.task.service.impl.ProcessAndMentoringFacadeImpl;
 import com.matching.task.utils.SetOfPairs;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,12 +20,12 @@ import java.util.List;
 @Controller
 public class UploadController {
 
-    private final ProcessFile processFileCSV;
+    private final ProcessAndMentoringFacadeImpl processAndMentoringFacadeImpl;
 
-    UploadController(ProcessFile processFileCSV){
-        this.processFileCSV = processFileCSV;
+    public UploadController(ProcessAndMentoringFacadeImpl processAndMentoringFacadeImpl) {
+        this.processAndMentoringFacadeImpl = processAndMentoringFacadeImpl;
     }
-    
+
     @GetMapping("/")
     public String uploadForm() {
         return "uploadForm";
@@ -41,7 +42,7 @@ public class UploadController {
     public RedirectView uploadFileProcess(@RequestParam("file")MultipartFile file,
                                           RedirectAttributes attributes) throws IOException {
 
-        List<SetOfPairs> listOfSetOfPairs = processFileCSV.process(file);
+        List<SetOfPairs> listOfSetOfPairs = processAndMentoringFacadeImpl.processAndMentoring(file);
         attributes.addFlashAttribute("listOfSetOfPairs",listOfSetOfPairs);
         return new RedirectView("/highestAverage");
     }

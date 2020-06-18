@@ -23,15 +23,7 @@ public class SetOfPairs {
         this.averageOfPairs = totalOfPairs / pairs.size();
     }
 
-    public boolean isContainsPair(Pair pairToEquals) {
-        for (Pair pair : pairs) {
-            if (pair.getPersonDTO1().equals(pairToEquals.getPersonDTO1()) || pair.getPersonDTO1().equals(pairToEquals.getPersonDTO2())
-            || pair.getPersonDTO2().equals(pairToEquals.getPersonDTO1()) || pair.getPersonDTO2().equals(pairToEquals.getPersonDTO2())) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     public List<Pair> getPairs() {
         return pairs;
