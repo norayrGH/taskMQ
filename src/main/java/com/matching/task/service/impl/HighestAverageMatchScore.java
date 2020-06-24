@@ -19,20 +19,24 @@ public class HighestAverageMatchScore implements MentoringChallenge {
         List<SetOfPairs> listSetOfPairs = new ArrayList<>();
         long setsCount = calculateSetsCount(allPersons.size()-1);
         int halfOfTheList = allPersons.size()/2;
-        PersonDTO keepFirstElement = allPersons.get(0);
-        allPersons.remove(0);
-        for (int i = 0; i < setsCount; i++) {
-            int index = i % allPersons.size();
-            SetOfPairs setOfPairs = new SetOfPairs();
-            setOfPairs.addPair(
-                    new Pair(allPersons.get(index),keepFirstElement, pairComparePercentage(allPersons.get(index),keepFirstElement)));
-            for (int other = 1; other < halfOfTheList; other++) {
-                int firs = (other + i) % allPersons.size();
-                int second = (i + allPersons.size() - other) % allPersons.size();
+        for (int setLider = 0; setLider < allPersons.size(); setLider++) {
+            List<PersonDTO> tempAllPersons = new ArrayList<>(allPersons); // bad idea )).//TODO
+            PersonDTO keepFirstElement = tempAllPersons.get(setLider);
+            tempAllPersons.remove(setLider);
+
+            for (int i = 0; i < setsCount; i++) {
+                int index = i % tempAllPersons.size();
+                SetOfPairs setOfPairs = new SetOfPairs();
                 setOfPairs.addPair(
-                        new Pair(allPersons.get(firs),allPersons.get(second), pairComparePercentage(allPersons.get(firs),allPersons.get(second))));
+                        new Pair(tempAllPersons.get(index),keepFirstElement, pairComparePercentage(tempAllPersons.get(index),keepFirstElement)));
+                for (int other = 1; other < halfOfTheList; other++) {
+                    int firs = (other + i) % tempAllPersons.size();
+                    int second = (i + tempAllPersons.size() - other) % tempAllPersons.size();
+                    setOfPairs.addPair(
+                            new Pair(tempAllPersons.get(firs),tempAllPersons.get(second), pairComparePercentage(tempAllPersons.get(firs),tempAllPersons.get(second))));
+                }
+                listSetOfPairs.add(setOfPairs);
             }
-            listSetOfPairs.add(setOfPairs);
         }
 
         listSetOfPairs.sort(Comparator.comparing(SetOfPairs::getAverageOfPairs).reversed());
